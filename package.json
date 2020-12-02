@@ -12,7 +12,9 @@
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "storyshots": "jest --config ./jest.storyshots.config.js",
+    "update-storyshots": "jest --config ./jest.storyshots.config.js --updateSnapshot"
   },
   "husky": {
     "hooks": {
@@ -34,6 +36,7 @@
     "sass": "1.29.0"
   },
   "devDependencies": {
+    "@storybook/addon-storyshots": "6.1.9",
     "@storybook/react": "6.1.9",
     "@testing-library/react": "11.2.2",
     "@types/jest": "26.0.16",
