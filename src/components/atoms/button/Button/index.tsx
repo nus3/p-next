@@ -10,5 +10,5 @@ export const Button = ({ isError }: ButtonProps): JSX.Element => {
     [styles.isError]: isError || false,
   })
 
-  return <button className={classes}>ボタンだよ</button>
+  return <button className={classes}>ボタンだよてへ</button>
 }
