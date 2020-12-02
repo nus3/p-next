@@ -1,0 +1,19 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  color: white;
+  border: none;
+  background-color: royalblue;
+
+  &:focus {
+    border: none;
+  }
+  // HACK: クラス名はケバブケース使いたい
+  &.isError {
+    background-color: red;
+  }
+}
