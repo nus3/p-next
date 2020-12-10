@@ -1,0 +1,22 @@
+{
+  "core": {
+    "workingDir": ".reg",
+    "actualDir": "__screenshots__",
+    "thresholdRate": 0,
+    "ximgdiff": {
+      "invocationType": "client"
+    }
+  },
+  "plugins": {
+    "reg-keygen-git-hash-plugin": true,
+    "reg-notify-github-plugin": {
+      "clientId": "client-id"
+    },
+    "reg-notify-slack-plugin": {
+      "webhookUrl": "webhookUrl"
+    },
+    "reg-publish-s3-plugin": {
+      "bucketName": "bucketName"
+    }
+  }
+}

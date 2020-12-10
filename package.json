@@ -15,7 +15,8 @@
     "build-storybook": "build-storybook",
     "storyshots": "jest --config ./jest.storyshots.config.js",
     "update-storyshots": "jest --config ./jest.storyshots.config.js --updateSnapshot",
-    "screenshot": "storycap --serverCmd \"start-storybook -p 6006 -s ./public\" http://localhost:6006"
+    "screenshot": "storycap --serverCmd \"start-storybook -p 6006 -s ./public\" http://localhost:6006",
+    "regression": "reg-suit run"
   },
   "husky": {
     "hooks": {
@@ -57,6 +58,11 @@
     "jest-watch-typeahead": "0.6.1",
     "lint-staged": "10.5.2",
     "prettier": "2.2.1",
+    "reg-keygen-git-hash-plugin": "^0.10.9",
+    "reg-notify-github-plugin": "^0.10.9",
+    "reg-notify-slack-plugin": "0.10.9",
+    "reg-publish-s3-plugin": "^0.10.9",
+    "reg-suit": "0.10.9",
     "sass-loader": "10.1.0",
     "storycap": "3.0.3",
     "style-loader": "2.0.0",
