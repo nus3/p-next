@@ -1,0 +1,17 @@
+.field {
+  width: 100%;
+  height: 40px;
+  line-height: 42px;
+  padding: 0 0.5rem;
+  border: 1px solid gray;
+  background-color: white;
+  border-radius: 2px;
+
+  &:hover {
+    border-color: skyblue;
+  }
+  &:focus {
+    border-color: skyblue;
+    outline: none;
+  }
+}

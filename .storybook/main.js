@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   stories: ['../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
   webpackFinal: async (baseConfig) => {
@@ -18,6 +20,10 @@ module.exports = {
         'sass-loader',
       ],
     })
+    baseConfig.resolve.modules = [
+      path.resolve(__dirname, '..', 'src'),
+      'node_modules',
+    ]
     return { ...baseConfig }
   },
 }
