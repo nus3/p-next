@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    .row {
+      display: flex;
+
+      .label {
+        width: 80px;
+      }
+    }
+  }
+  .btn {
+    width: 200px;
+  }
+}
