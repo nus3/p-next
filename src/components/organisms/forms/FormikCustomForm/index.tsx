@@ -6,12 +6,14 @@ import { Field, Form, useFormikContext, Formik, FieldProps } from 'formik'
 import { useEffect } from 'react'
 import * as Yup from 'yup'
 import styles from './style.module.scss'
+import dayjs from 'dayjs'
 
 export type FormikCustomFormValues = {
   name: string
   isLike: boolean
   fruit: 'apple' | 'banana' | 'lemon'
   category: 'dog' | 'cat' | 'rabbit'
+  date: string
 }
 
 export const FormikCustomFormPresenter = (): JSX.Element => (
@@ -21,9 +23,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
         {({ field }: FieldProps<FormikCustomFormValues['name']>) => (
           <>
             <div className={styles.row}>
-              <label className={styles.label} htmlFor="nameInput">
-                名前
-              </label>
+              <label className={styles.label}>名前</label>
               <InputText
                 name={field.name}
                 value={field.value}
@@ -101,9 +101,28 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
       </div>
       <ErrorMessage name="category" />
     </div>
-    <button type="submit" className={styles.btn}>
-      Submit
-    </button>
+    <div className={styles.wrap}>
+      <Field name="date">
+        {({ field }: FieldProps<FormikCustomFormValues['date']>) => (
+          <>
+            <div className={styles.row}>
+              <label className={styles.label}>日付</label>
+              <InputText
+                name={field.name}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            </div>
+            <ErrorMessage name="date" />
+          </>
+        )}
+      </Field>
+    </div>
+    <div className={styles['btn-wrap']}>
+      <button type="submit" className={styles.btn}>
+        Submit
+      </button>
+    </div>
   </Form>
 )
 
@@ -128,6 +147,13 @@ export const validationSchema = Yup.object().shape({
   isLike: Yup.boolean().required(),
   fruit: Yup.mixed().oneOf(['apple', 'banana', 'lemon']).required(),
   category: Yup.mixed().oneOf(['dog', 'cat', 'rabbit']).required(),
+  date: Yup.string()
+    .required()
+    .test('checkDateFormat', '日付の形式が間違ってます', (value): boolean => {
+      if (!dayjs(value).isValid()) return false
+      const format = 'YYYY/MM/DD'
+      return dayjs(value, format).format(format) === value
+    }),
 })
 
 export type FormikCustomFormProps = {
@@ -148,6 +174,7 @@ export const FormikCustomForm = ({
     isLike: false,
     fruit: 'apple',
     category: 'dog',
+    date: '',
   }
 
   return (

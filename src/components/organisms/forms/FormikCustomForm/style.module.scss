@@ -24,8 +24,15 @@
       }
     }
   }
-  .btn {
-    width: 200px;
-    height: 40px;
+  .btn-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+
+    .btn {
+      width: 200px;
+      height: 40px;
+    }
   }
 }
