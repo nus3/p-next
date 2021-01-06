@@ -2,11 +2,25 @@ import { CheckBox } from 'components/atoms/forms/Checkbox'
 import { InputText } from 'components/atoms/forms/InputText'
 import { Radio } from 'components/atoms/forms/Radio'
 import { ErrorMessage } from 'components/molecules/forms/ErrorMessage'
-import { Field, Form, useFormikContext, Formik, FieldProps } from 'formik'
+import {
+  Field,
+  Form,
+  useFormikContext,
+  Formik,
+  FieldProps,
+  FieldArray,
+  ArrayHelpers,
+} from 'formik'
 import { useEffect } from 'react'
 import * as Yup from 'yup'
 import styles from './style.module.scss'
 import dayjs from 'dayjs'
+import classnames from 'classnames'
+
+type Friend = {
+  name: string
+  email: string
+}
 
 export type FormikCustomFormValues = {
   name: string
@@ -14,6 +28,7 @@ export type FormikCustomFormValues = {
   fruit: 'apple' | 'banana' | 'lemon'
   category: 'dog' | 'cat' | 'rabbit'
   date: string
+  friends: Friend[]
 }
 
 export const FormikCustomFormPresenter = (): JSX.Element => (
@@ -118,6 +133,57 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
         )}
       </Field>
     </div>
+    <div className={styles.wrap}>
+      <Field name="friends">
+        {({ field }: FieldProps<FormikCustomFormValues['friends']>) => (
+          <FieldArray name={field.name}>
+            {({ remove, push }: ArrayHelpers) => (
+              <div>
+                {field.value.map((f, i) => (
+                  <div key={i}>
+                    <div className={classnames(styles.row, styles['mb-4'])}>
+                      <label className={styles.label}>名前</label>
+                      <InputText
+                        name={`friends.${i}.name`}
+                        value={f.name}
+                        onChange={field.onChange}
+                      />
+                      <ErrorMessage name={`friends.${i}.name`} />
+                    </div>
+                    <div className={styles.row}>
+                      <label className={styles.label}>メール</label>
+                      <InputText
+                        name={`friends.${i}.email`}
+                        value={f.email}
+                        onChange={field.onChange}
+                      />
+                      <ErrorMessage name={`friends.${i}.email`} />
+                    </div>
+                    <button
+                      className={styles['mb-4']}
+                      type="button"
+                      onClick={() => {
+                        remove(i)
+                      }}
+                    >
+                      削除
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    push({ name: '', email: '' })
+                  }}
+                >
+                  友達追加
+                </button>
+              </div>
+            )}
+          </FieldArray>
+        )}
+      </Field>
+    </div>
     <div className={styles['btn-wrap']}>
       <button type="submit" className={styles.btn}>
         Submit
@@ -175,6 +241,12 @@ export const FormikCustomForm = ({
     fruit: 'apple',
     category: 'dog',
     date: '',
+    friends: [
+      {
+        name: '',
+        email: '',
+      },
+    ],
   }
 
   return (

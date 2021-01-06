@@ -11,6 +11,12 @@ export const Default = (): JSX.Element => {
     fruit: 'apple',
     category: 'dog',
     date: '',
+    friends: [
+      {
+        name: '',
+        email: '',
+      },
+    ],
   }
 
   const onSubmit = (values: FormikCustomFormValues) => {
