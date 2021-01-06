@@ -1,14 +1,8 @@
 import { CheckBox } from 'components/atoms/forms/Checkbox'
 import { InputText } from 'components/atoms/forms/InputText'
 import { Radio } from 'components/atoms/forms/Radio'
-import {
-  Field,
-  Form,
-  ErrorMessage,
-  useFormikContext,
-  Formik,
-  FieldProps,
-} from 'formik'
+import { ErrorMessage } from 'components/molecules/forms/ErrorMessage'
+import { Field, Form, useFormikContext, Formik, FieldProps } from 'formik'
 import { useEffect } from 'react'
 import * as Yup from 'yup'
 import styles from './style.module.scss'
@@ -36,7 +30,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
                 onChange={field.onChange}
               />
             </div>
-            <ErrorMessage name="name" component="div" />
+            <ErrorMessage name="name" />
           </>
         )}
       </Field>
@@ -56,7 +50,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
                 onChange={field.onChange}
               />
             </div>
-            <ErrorMessage name="isLike" component="div" />
+            <ErrorMessage name="isLike" />
           </>
         )}
       </Field>
@@ -91,7 +85,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
                 />
               </div>
             </div>
-            <ErrorMessage name="fruit" component="div" />
+            <ErrorMessage name="fruit" />
           </>
         )}
       </Field>
@@ -105,6 +99,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
           <option value="rabbit">ウサギ</option>
         </Field>
       </div>
+      <ErrorMessage name="category" />
     </div>
     <button type="submit" className={styles.btn}>
       Submit
