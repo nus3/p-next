@@ -1,5 +1,6 @@
 import { CheckBox } from 'components/atoms/forms/Checkbox'
 import { InputText } from 'components/atoms/forms/InputText'
+import { Radio } from 'components/atoms/forms/Radio'
 import {
   Field,
   Form,
@@ -15,6 +16,7 @@ import styles from './style.module.scss'
 export type FormikCustomFormValues = {
   name: string
   isLike: boolean
+  fruit: 'apple' | 'banana' | 'lemon'
 }
 
 export const FormikCustomFormPresenter = (): JSX.Element => (
@@ -43,7 +45,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
         {({ field }: FieldProps<FormikCustomFormValues['isLike']>) => (
           <>
             <div className={styles.row}>
-              <label className={styles.label} htmlFor="nameInput">
+              <label className={styles.label} htmlFor="isLike">
                 ログホラが
               </label>
               <CheckBox
@@ -54,6 +56,43 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
               ></CheckBox>
             </div>
             <ErrorMessage name="isLike" component="div" />
+          </>
+        )}
+      </Field>
+    </div>
+    <div className={styles.wrap}>
+      <Field name="fruit">
+        {({ field }: FieldProps<FormikCustomFormValues['fruit']>) => (
+          <>
+            <div className={styles.row}>
+              <label className={styles.label} htmlFor="fruit">
+                フルーツ
+              </label>
+              <div className={styles['radio-area']}>
+                <Radio
+                  name={field.name}
+                  value="apple"
+                  checked={field.value === 'apple'}
+                  label="りんご"
+                  onChange={field.onChange}
+                />
+                <Radio
+                  name={field.name}
+                  value="banana"
+                  checked={field.value === 'banana'}
+                  label="バナナ"
+                  onChange={field.onChange}
+                />
+                <Radio
+                  name={field.name}
+                  value="lemon"
+                  checked={field.value === 'lemon'}
+                  label="レモン"
+                  onChange={field.onChange}
+                />
+              </div>
+            </div>
+            <ErrorMessage name="fruit" component="div" />
           </>
         )}
       </Field>
@@ -83,6 +122,7 @@ export const FormikCustomFormContainer = ({
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
   isLike: Yup.boolean().required(),
+  fruit: Yup.mixed().oneOf(['apple', 'banana', 'lemon']).required(),
 })
 
 export type FormikCustomFormProps = {
@@ -101,6 +141,7 @@ export const FormikCustomForm = ({
   const initialValues: FormikCustomFormValues = formValues || {
     name: '',
     isLike: false,
+    fruit: 'apple',
   }
 
   return (

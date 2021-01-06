@@ -8,6 +8,7 @@ export const Default = (): JSX.Element => {
   const formValues: FormikCustomFormValues = {
     name: '',
     isLike: false,
+    fruit: 'apple',
   }
 
   const onSubmit = (values: FormikCustomFormValues) => {
