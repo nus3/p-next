@@ -17,6 +17,7 @@ export type FormikCustomFormValues = {
   name: string
   isLike: boolean
   fruit: 'apple' | 'banana' | 'lemon'
+  category: 'dog' | 'cat' | 'rabbit'
 }
 
 export const FormikCustomFormPresenter = (): JSX.Element => (
@@ -53,7 +54,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
                 label="好きか"
                 checked={field.value}
                 onChange={field.onChange}
-              ></CheckBox>
+              />
             </div>
             <ErrorMessage name="isLike" component="div" />
           </>
@@ -65,9 +66,7 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
         {({ field }: FieldProps<FormikCustomFormValues['fruit']>) => (
           <>
             <div className={styles.row}>
-              <label className={styles.label} htmlFor="fruit">
-                フルーツ
-              </label>
+              <label className={styles.label}>フルーツ</label>
               <div className={styles['radio-area']}>
                 <Radio
                   name={field.name}
@@ -97,6 +96,16 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
         )}
       </Field>
     </div>
+    <div className={styles.wrap}>
+      <div className={styles.row}>
+        <label className={styles.label}>ペット</label>
+        <Field className={styles.select} as="select" name="category">
+          <option value="dog">犬</option>
+          <option value="cat">猫</option>
+          <option value="rabbit">ウサギ</option>
+        </Field>
+      </div>
+    </div>
     <button type="submit" className={styles.btn}>
       Submit
     </button>
@@ -123,6 +132,7 @@ export const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
   isLike: Yup.boolean().required(),
   fruit: Yup.mixed().oneOf(['apple', 'banana', 'lemon']).required(),
+  category: Yup.mixed().oneOf(['dog', 'cat', 'rabbit']).required(),
 })
 
 export type FormikCustomFormProps = {
@@ -142,6 +152,7 @@ export const FormikCustomForm = ({
     name: '',
     isLike: false,
     fruit: 'apple',
+    category: 'dog',
   }
 
   return (
