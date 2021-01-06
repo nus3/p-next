@@ -1,0 +1,14 @@
+.label-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .input {
+    width: 1rem;
+    height: 1.3rem;
+    margin-right: 0.5rem;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+  }
+}

@@ -1,3 +1,4 @@
+import { CheckBox } from 'components/atoms/forms/Checkbox'
 import { InputText } from 'components/atoms/forms/InputText'
 import {
   Field,
@@ -13,6 +14,7 @@ import styles from './style.module.scss'
 
 export type FormikCustomFormValues = {
   name: string
+  isLike: boolean
 }
 
 export const FormikCustomFormPresenter = (): JSX.Element => (
@@ -32,6 +34,26 @@ export const FormikCustomFormPresenter = (): JSX.Element => (
               />
             </div>
             <ErrorMessage name="name" component="div" />
+          </>
+        )}
+      </Field>
+    </div>
+    <div className={styles.wrap}>
+      <Field name="isLike">
+        {({ field }: FieldProps<FormikCustomFormValues['isLike']>) => (
+          <>
+            <div className={styles.row}>
+              <label className={styles.label} htmlFor="nameInput">
+                ログホラが
+              </label>
+              <CheckBox
+                id="isLike"
+                label="好きか"
+                checked={field.value}
+                onChange={field.onChange}
+              ></CheckBox>
+            </div>
+            <ErrorMessage name="isLike" component="div" />
           </>
         )}
       </Field>
@@ -60,6 +82,7 @@ export const FormikCustomFormContainer = ({
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
+  isLike: Yup.boolean().required(),
 })
 
 export type FormikCustomFormProps = {
@@ -77,6 +100,7 @@ export const FormikCustomForm = ({
 
   const initialValues: FormikCustomFormValues = formValues || {
     name: '',
+    isLike: false,
   }
 
   return (
