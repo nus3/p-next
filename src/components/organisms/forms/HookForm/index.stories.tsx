@@ -12,3 +12,17 @@ export const Default = (): JSX.Element => {
 
   return <HookForm onSubmit={onSubmit} />
 }
+
+export const InitValue = (): JSX.Element => {
+  const initValue: HookFormValues = {
+    name: '初期値',
+    age: 25,
+  }
+
+  const onSubmit = (values: HookFormValues) => {
+    // eslint-disable-next-line
+    console.log(values)
+  }
+
+  return <HookForm onSubmit={onSubmit} formValues={initValue} />
+}
