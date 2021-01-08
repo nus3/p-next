@@ -20,6 +20,12 @@ export const InitValue = (): JSX.Element => {
     isLike: true,
     fruit: 'apple',
     category: 'dog',
+    friends: [
+      {
+        name: 'name',
+        email: 'email',
+      },
+    ],
   }
 
   const onSubmit = (values: HookFormValues) => {

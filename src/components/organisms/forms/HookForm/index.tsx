@@ -1,9 +1,19 @@
 import { useEffect } from 'react'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import {
+  FormProvider,
+  useFieldArray,
+  useForm,
+  useFormContext,
+} from 'react-hook-form'
 import { HookCheckBox } from 'components/atoms/forms/HookCheckbox'
 import { HookRadio } from 'components/atoms/forms/HookRadio'
+
+type Friend = {
+  name: string
+  email: string
+}
 
 export type HookFormValues = {
   name: string
@@ -11,6 +21,7 @@ export type HookFormValues = {
   isLike: boolean
   fruit: 'apple' | 'banana' | 'lemon'
   category: 'dog' | 'cat' | 'rabbit'
+  friends: Friend[]
 }
 
 export type HookFormPresenterProps = {
@@ -20,7 +31,16 @@ export type HookFormPresenterProps = {
 export const HookFormPresenter = ({
   onSubmit,
 }: HookFormPresenterProps): JSX.Element => {
-  const { register, handleSubmit, errors } = useFormContext<HookFormValues>()
+  const {
+    register,
+    handleSubmit,
+    errors,
+    control,
+  } = useFormContext<HookFormValues>()
+  const { fields, append, remove } = useFieldArray<Friend>({
+    control,
+    name: 'friends',
+  })
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,6 +69,28 @@ export const HookFormPresenter = ({
           <option value="rabbit">ウサギ</option>
         </select>
       </div>
+      <div>
+        {fields.map((f, i) => (
+          <div key={f.id}>
+            <input name={`friends[${i}].name`} ref={register} />
+            <input name={`friends[${i}].email`} ref={register} />
+          </div>
+        ))}
+      </div>
+      <button
+        onClick={() => {
+          append({ name: '', email: '' })
+        }}
+      >
+        友達追加
+      </button>
+      <button
+        onClick={() => {
+          remove()
+        }}
+      >
+        全削除
+      </button>
       <button type="submit">Submit</button>
     </form>
   )
