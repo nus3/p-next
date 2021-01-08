@@ -1,4 +1,4 @@
-import { FormikForm, FormikFormValues } from './'
+import { FormikForm, FormikFormValues } from '.'
 
 export default {
   title: 'organisms/forms/FormikForm',
