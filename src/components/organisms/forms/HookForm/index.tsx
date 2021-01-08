@@ -2,10 +2,15 @@ import { useEffect } from 'react'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { HookCheckBox } from 'components/atoms/forms/HookCheckbox'
+import { HookRadio } from 'components/atoms/forms/HookRadio'
 
 export type HookFormValues = {
   name: string
   age: number
+  isLike: boolean
+  fruit: 'apple' | 'banana' | 'lemon'
+  category: 'dog' | 'cat' | 'rabbit'
 }
 
 export type HookFormPresenterProps = {
@@ -28,6 +33,21 @@ export const HookFormPresenter = ({
         <label htmlFor="age">年齢</label>
         <input name="age" ref={register} type="number" />
         {errors.age && <p>{errors.age.message}</p>}
+      </div>
+      <div>
+        <HookCheckBox name="isLike" label="ログホラが好き"></HookCheckBox>
+      </div>
+      <div>
+        <HookRadio name="fruit" value="apple" label="りんご" />
+        <HookRadio name="fruit" value="banana" label="ばなな" />
+        <HookRadio name="fruit" value="lemon" label="レモン" />
+      </div>
+      <div>
+        <select name="category" ref={register}>
+          <option value="dog">犬</option>
+          <option value="cat">ねこ</option>
+          <option value="rabbit">ウサギ</option>
+        </select>
       </div>
       <button type="submit">Submit</button>
     </form>
@@ -60,6 +80,8 @@ export type HookFormProps = {
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
   age: Yup.number().required(),
+  fruit: Yup.mixed().oneOf(['apple', 'banana', 'lemon']).required(),
+  category: Yup.mixed().oneOf(['dog', 'cat', 'rabbit']).required(),
 })
 
 export const HookForm = ({

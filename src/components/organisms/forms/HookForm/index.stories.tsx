@@ -17,6 +17,9 @@ export const InitValue = (): JSX.Element => {
   const initValue: HookFormValues = {
     name: '初期値',
     age: 25,
+    isLike: true,
+    fruit: 'apple',
+    category: 'dog',
   }
 
   const onSubmit = (values: HookFormValues) => {
