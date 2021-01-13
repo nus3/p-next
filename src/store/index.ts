@@ -40,8 +40,10 @@ const rootReducer = combineReducers({
   user: userSlice.reducer,
 })
 
+export type RootState = ReturnType<typeof rootReducer>
+
 const persistConfig = {
-  key: 'root',
+  key: 'p-next-test',
   version: 1,
   storage,
 }
