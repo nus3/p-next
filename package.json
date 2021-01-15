@@ -16,7 +16,9 @@
     "storyshots": "jest --config ./jest.storyshots.config.js",
     "update-storyshots": "jest --config ./jest.storyshots.config.js --updateSnapshot",
     "screenshot": "storycap --serverCmd \"start-storybook -p 6006 -s ./public\" http://localhost:6006",
-    "regression": "reg-suit run"
+    "regression": "reg-suit run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "husky": {
     "hooks": {
@@ -59,6 +61,7 @@
     "@typescript-eslint/parser": "4.9.0",
     "babel-jest": "26.6.3",
     "css-loader": "5.0.1",
+    "cypress": "6.2.1",
     "eslint": "7.14.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-react": "7.21.5",
