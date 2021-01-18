@@ -38,3 +38,6 @@ yarn-error.log*
 .reg
 
 regconfig-hide.json
+
+# cypress
+/cypress/videos

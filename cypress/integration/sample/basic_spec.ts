@@ -1,4 +1,12 @@
-it('should perform basic google search', () => {
-  cy.visit('https://google.com')
-  cy.get('[name="q"]').type('subscribe').type('{enter}')
+describe('The Store Page', () => {
+  it('success loads', () => {
+    cy.visit('/store')
+
+    cy.contains('update').click()
+    cy.get('p').contains(28)
+
+    cy.contains('reset').click()
+    cy.contains('addHistory').click()
+    cy.contains('home').click()
+  })
 })

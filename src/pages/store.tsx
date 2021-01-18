@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'store'
 import { userSlice } from 'store/user'
@@ -5,6 +6,8 @@ import { userSlice } from 'store/user'
 const StorePage = (): JSX.Element => {
   const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user)
+
+  const router = useRouter()
 
   const handleConfirm = () => {
     // eslint-disable-next-line
@@ -28,6 +31,10 @@ const StorePage = (): JSX.Element => {
     dispatch(userSlice.actions.addHistory('push'))
   }
 
+  const handleMoveIndex = () => {
+    router.push('/')
+  }
+
   return (
     <div>
       <h1>storeの動作確認</h1>
@@ -42,6 +49,14 @@ const StorePage = (): JSX.Element => {
       </button>
       <button type="button" onClick={handleAddHistory}>
         addHistory
+      </button>
+      <p>{user.user.age}</p>
+      <p>{user.user.name}</p>
+      <p>{user.user.email}</p>
+      <p>{user.user.token}</p>
+      <p>ヒストリーの数：{user.user.history.length}</p>
+      <button type="button" onClick={handleMoveIndex}>
+        home
       </button>
     </div>
   )
