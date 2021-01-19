@@ -1,4 +1,4 @@
-import { Roulette, RouletteProps } from './index'
+import { Roulette, RouletteProps } from '.'
 
 export default {
   title: 'organisms/question/Roulette',

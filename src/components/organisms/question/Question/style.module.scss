@@ -1,0 +1,17 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  background: hsl(0 0% 100%);
+  line-height: 1.5;
+  border-radius: 2ch;
+
+  .question {
+    margin: 0;
+    padding: 30px;
+    font-size: 66px;
+    font-weight: bold;
+    color: #313131;
+  }
+}
