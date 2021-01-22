@@ -1,9 +1,10 @@
+import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'store'
 import { userSlice } from 'store/user'
 
-const StorePage = (): JSX.Element => {
+const StorePage: NextPage = () => {
   const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user)
 

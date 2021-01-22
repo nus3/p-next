@@ -1,6 +1,7 @@
 import { useFriendStatus } from 'hooks/friend'
+import { NextPage } from 'next'
 
-const HookPage = (): JSX.Element => {
+const HookPage: NextPage = () => {
   const isOnline = useFriendStatus('1')
 
   return (
