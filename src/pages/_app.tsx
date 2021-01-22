@@ -4,17 +4,21 @@ import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import { useStore } from 'store'
+import { NextPage } from 'next'
+import ErrorBoundary from 'error'
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   const store = useStore()
   const persistor = persistStore(store)
 
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Component {...pageProps} />
-      </PersistGate>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 
