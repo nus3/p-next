@@ -1,15 +1,15 @@
-import { useCurrentUser } from 'hooks/useCurrentUser'
+import { useUserStore } from 'hooks/store/useUserStore'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 export const useRequireName = (): void => {
-  const user = useCurrentUser()
+  const { user } = useUserStore()
   const router = useRouter()
 
   useEffect(() => {
-    if (!user.isChecking) return
-    if (user.name === null) {
+    // NOTE: user情報を取得しているのにnameがない場合はリダイレクト
+    if (user.isFetched && user.name === null) {
       router.push('/store')
     }
-  }, [user])
+  }, [user.name, user.isFetched])
 }

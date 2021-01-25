@@ -58,5 +58,6 @@ export const useStore = (): EnhancedStore => {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    devTools: true,
   })
 }

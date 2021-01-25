@@ -4,7 +4,7 @@ export type UserState = {
   email: string | null
   token: string | null
   history: string[]
-  isChecking: boolean
+  isFetched: boolean
 }
 
 export type UpdateUserPayload = {

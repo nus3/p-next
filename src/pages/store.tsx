@@ -1,36 +1,33 @@
+import { useUserStore } from 'hooks/store/useUserStore'
 import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'store'
-import { userSlice } from 'store/user'
 
 const StorePage: NextPage = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state: RootState) => state.user)
+  const userStore = useUserStore()
 
   const router = useRouter()
 
   const handleConfirm = () => {
     // eslint-disable-next-line
-    console.log(user)
+    console.log(userStore.user)
   }
   const handleUpdate = () => {
-    dispatch(userSlice.actions.check(true))
-    dispatch(
-      userSlice.actions.updateUser({
-        name: 'name',
-        age: 28,
-        email: 'email',
-        token: 'token',
-        history: [],
-      })
-    )
+    // NOTE: apiから認証後にjwtを受け取る(_app.tsxでやる)
+    userStore.fetched(true)
+
+    userStore.update({
+      name: 'name',
+      age: 28,
+      email: 'email',
+      token: 'token',
+      history: [],
+    })
   }
   const handleReset = () => {
-    dispatch(userSlice.actions.reset())
+    userStore.reset()
   }
   const handleAddHistory = () => {
-    dispatch(userSlice.actions.addHistory('push'))
+    userStore.addHistory('foo')
   }
 
   const handleMoveIndex = () => {
@@ -52,13 +49,13 @@ const StorePage: NextPage = () => {
       <button type="button" onClick={handleAddHistory}>
         addHistory
       </button>
-      <p>{user.age}</p>
-      <p>{user.name}</p>
-      <p>{user.email}</p>
-      <p>{user.token}</p>
-      <p>ヒストリーの数：{user.history.length}</p>
+      <p>{userStore.user.age}</p>
+      <p>{userStore.user.name}</p>
+      <p>{userStore.user.email}</p>
+      <p>{userStore.user.token}</p>
+      <p>ヒストリーの数：{userStore.user.history.length}</p>
       <button type="button" onClick={handleMoveIndex}>
-        home
+        redirectページへ
       </button>
     </div>
   )

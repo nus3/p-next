@@ -7,7 +7,7 @@ export const initialState: UserState = {
   email: null,
   token: null,
   history: [],
-  isChecking: false,
+  isFetched: false,
 }
 
 export const userSlice = createSlice({
@@ -15,8 +15,8 @@ export const userSlice = createSlice({
   initialState,
   // HACK: reducerも分けたくなるかな？
   reducers: {
-    check(state, action: PayloadAction<boolean>) {
-      state.isChecking = action.payload
+    fetched(state, action: PayloadAction<boolean>) {
+      state.isFetched = action.payload
     },
     updateUser(state, action: PayloadAction<UpdateUserPayload>) {
       // HACK: スプレッド構文で渡したい
@@ -30,7 +30,7 @@ export const userSlice = createSlice({
       state.history.push(action.payload)
     },
     reset(state): UserState {
-      return { ...initialState, isChecking: state.isChecking }
+      return { ...initialState, isFetched: state.isFetched }
     },
   },
 })

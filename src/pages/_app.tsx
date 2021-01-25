@@ -14,7 +14,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+        <PersistGate persistor={persistor} loading={<div>Loading....</div>}>
           <Component {...pageProps} />
         </PersistGate>
       </Provider>
