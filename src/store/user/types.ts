@@ -1,14 +1,17 @@
-export type User = {
+export type UserState = {
+  name: string | null
+  age: number | null
+  email: string | null
+  token: string | null
+  history: string[]
+  isChecking: boolean
+}
+
+export type UpdateUserPayload = {
   name: string | null
   age: number | null
   email: string | null
   token: string | null
   history: string[]
 }
-
-export type UserState = {
-  user: User
-}
-
-export type UpdateUserPayload = User
 export type AddHistoryPayload = string

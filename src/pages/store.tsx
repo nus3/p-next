@@ -15,6 +15,7 @@ const StorePage: NextPage = () => {
     console.log(user)
   }
   const handleUpdate = () => {
+    dispatch(userSlice.actions.check(true))
     dispatch(
       userSlice.actions.updateUser({
         name: 'name',
@@ -33,7 +34,7 @@ const StorePage: NextPage = () => {
   }
 
   const handleMoveIndex = () => {
-    router.push('/')
+    router.push('/redirect')
   }
 
   return (
@@ -51,11 +52,11 @@ const StorePage: NextPage = () => {
       <button type="button" onClick={handleAddHistory}>
         addHistory
       </button>
-      <p>{user.user.age}</p>
-      <p>{user.user.name}</p>
-      <p>{user.user.email}</p>
-      <p>{user.user.token}</p>
-      <p>ヒストリーの数：{user.user.history.length}</p>
+      <p>{user.age}</p>
+      <p>{user.name}</p>
+      <p>{user.email}</p>
+      <p>{user.token}</p>
+      <p>ヒストリーの数：{user.history.length}</p>
       <button type="button" onClick={handleMoveIndex}>
         home
       </button>

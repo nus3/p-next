@@ -2,13 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AddHistoryPayload, UpdateUserPayload, UserState } from './types'
 
 export const initialState: UserState = {
-  user: {
-    name: null,
-    age: null,
-    email: null,
-    token: null,
-    history: [],
-  },
+  name: null,
+  age: null,
+  email: null,
+  token: null,
+  history: [],
+  isChecking: false,
 }
 
 export const userSlice = createSlice({
@@ -16,14 +15,22 @@ export const userSlice = createSlice({
   initialState,
   // HACK: reducerも分けたくなるかな？
   reducers: {
+    check(state, action: PayloadAction<boolean>) {
+      state.isChecking = action.payload
+    },
     updateUser(state, action: PayloadAction<UpdateUserPayload>) {
-      state.user = action.payload
+      // HACK: スプレッド構文で渡したい
+      state.name = action.payload.name
+      state.age = action.payload.age
+      state.email = action.payload.email
+      state.token = action.payload.token
+      state.history = action.payload.history
     },
     addHistory(state, action: PayloadAction<AddHistoryPayload>) {
-      state.user.history.push(action.payload)
+      state.history.push(action.payload)
     },
-    reset(): UserState {
-      return initialState
+    reset(state): UserState {
+      return { ...initialState, isChecking: state.isChecking }
     },
   },
 })
