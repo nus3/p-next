@@ -14,5 +14,22 @@
     font-size: 66px;
     font-weight: bold;
     color: #313131;
+
+    &.animation {
+      animation-name: show;
+      animation-timing-function: ease;
+      animation-duration: 2s;
+    }
+  }
+}
+
+/** ---------- animation ---------- **/
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
