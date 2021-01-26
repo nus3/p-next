@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { QuestionState, UpdateQuestionsPayload } from 'store/question/types'
+import {
+  QuestionState,
+  UpdateQuestionsPayload,
+  SelectCurrentQuestionsPayload,
+} from 'store/question/types'
 
 export const initialState: QuestionState = {
   questions: [],
+  currentQuestion: undefined,
 }
 
 export const questionSlice = createSlice({
@@ -11,6 +16,12 @@ export const questionSlice = createSlice({
   reducers: {
     update(state, action: PayloadAction<UpdateQuestionsPayload>) {
       state.questions = action.payload
+    },
+    selectCurrentQuestion(
+      state,
+      action: PayloadAction<SelectCurrentQuestionsPayload>
+    ) {
+      state.currentQuestion = action.payload
     },
   },
 })

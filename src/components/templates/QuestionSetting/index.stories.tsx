@@ -6,6 +6,6 @@ export default {
 
 export const Default = (): JSX.Element => (
   <QuestionSetting
-    questionFormProps={{ onSubmit: () => undefined }}
+    questionFormProps={{ onSubmit: () => undefined, onSelect: () => undefined }}
   ></QuestionSetting>
 )

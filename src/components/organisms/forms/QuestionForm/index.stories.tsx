@@ -13,5 +13,5 @@ export const Default = (): JSX.Element => {
     console.log(values)
   }
 
-  return <QuestionForm onSubmit={onSubmit} />
+  return <QuestionForm onSubmit={onSubmit} onSelect={() => undefined} />
 }

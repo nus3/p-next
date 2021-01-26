@@ -17,10 +17,12 @@ export type QuestionFormValues = {
 
 export type QuestionFormPresenterProps = {
   onSubmit: (values: QuestionFormValues) => void
+  onSelect: (question?: string) => void
 }
 
 export const QuestionFormPresenter = ({
   onSubmit,
+  onSelect,
 }: QuestionFormPresenterProps): JSX.Element => {
   const {
     register,
@@ -42,6 +44,7 @@ export const QuestionFormPresenter = ({
               name={`questions[${i}].text`}
               ref={register()}
               placeholder="text"
+              defaultValue={f.text}
             />
             <button
               className={styles['btn']}
@@ -52,12 +55,22 @@ export const QuestionFormPresenter = ({
             >
               削除
             </button>
+            <button
+              className={styles['btn']}
+              type="button"
+              onClick={() => {
+                onSelect(f.text)
+              }}
+            >
+              選択
+            </button>
           </div>
         ))}
       </div>
       <footer>
         <button
           className={styles['footer-btn']}
+          type="button"
           onClick={() => {
             append({ text: '' })
           }}
@@ -74,12 +87,14 @@ export const QuestionFormPresenter = ({
 
 export type QuestionFormContainerProps = {
   onSubmit: (values: QuestionFormValues) => void
+  onSelect: QuestionFormPresenterProps['onSelect']
   formValues?: QuestionFormValues
 }
 
 export const QuestionFormContainer = ({
   onSubmit,
   formValues,
+  onSelect,
 }: QuestionFormContainerProps): JSX.Element => {
   const { reset } = useFormContext<QuestionFormValues>()
 
@@ -87,23 +102,33 @@ export const QuestionFormContainer = ({
     reset(formValues)
   }, [formValues])
 
-  return <QuestionFormPresenter onSubmit={onSubmit} />
+  return <QuestionFormPresenter onSubmit={onSubmit} onSelect={onSelect} />
 }
 
 export type QuestionFormProps = {
   onSubmit: (values: QuestionFormValues) => void
+  onSelect: QuestionFormPresenterProps['onSelect']
   formValues?: QuestionFormValues
 }
 
 export const QuestionForm = ({
   onSubmit,
+  onSelect,
   formValues,
 }: QuestionFormProps): JSX.Element => {
-  const methods = useForm<QuestionFormValues>()
+  const methods = useForm<QuestionFormValues>({
+    defaultValues: {
+      questions: formValues.questions,
+    },
+  })
 
   return (
     <FormProvider {...methods}>
-      <QuestionFormContainer onSubmit={onSubmit} formValues={formValues} />
+      <QuestionFormContainer
+        onSubmit={onSubmit}
+        onSelect={onSelect}
+        formValues={formValues}
+      />
     </FormProvider>
   )
 }
