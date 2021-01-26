@@ -54,18 +54,20 @@ export const QuestionFormPresenter = ({
             </button>
           </div>
         ))}
+      </div>
+      <footer>
         <button
-          className={styles['question-list-btn']}
+          className={styles['footer-btn']}
           onClick={() => {
             append({ text: '' })
           }}
         >
           質問追加
         </button>
-      </div>
-      <button className={styles['submit-btn']} type="submit">
-        保存
-      </button>
+        <button className={styles['footer-btn']} type="submit">
+          保存
+        </button>
+      </footer>
     </form>
   )
 }

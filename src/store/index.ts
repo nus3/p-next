@@ -15,6 +15,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
+import { questionSlice } from 'store/question'
 
 // HACK: `redux-persist failed to create sync storage. falling back to noop storage.`の対応
 // https://github.com/vercel/next.js/discussions/15687#discussioncomment-45319
@@ -38,6 +39,7 @@ const storage =
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
+  question: questionSlice.reducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
