@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { useStore } from 'store'
 import { NextPage } from 'next'
 import ErrorBoundary from 'error'
+import { AuthProvider } from 'contexts/AuthProvider'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   const store = useStore()
@@ -13,11 +14,13 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ErrorBoundary>
-      <Provider store={store}>
-        <PersistGate persistor={persistor} loading={<div>Loading....</div>}>
-          <Component {...pageProps} />
-        </PersistGate>
-      </Provider>
+      <AuthProvider>
+        <Provider store={store}>
+          <PersistGate persistor={persistor} loading={<div>Loading....</div>}>
+            <Component {...pageProps} />
+          </PersistGate>
+        </Provider>
+      </AuthProvider>
     </ErrorBoundary>
   )
 }
