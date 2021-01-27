@@ -29,6 +29,11 @@ export const AuthProvider: NextPage = ({ children }) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      // NOTE: 参考
+      //       https://medium.com/@tafka_labs/auth-redirect-in-nextjs-3a3a524c0a06
+      // urlの判別をuserの中身見てリダイレクトする？
+      // TODO: その時の挙動を確認する
+
       // eslint-disable-next-line
       console.log('routeChangeイベントやでぇ', { url })
       // eslint-disable-next-line
