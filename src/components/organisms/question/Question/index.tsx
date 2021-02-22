@@ -28,7 +28,7 @@ export const Question = ({ text }: QuestionProps): JSX.Element => {
 
   return (
     <div className={styles.wrap}>
-      <h1 className={h1Classes}>{question}</h1>
+      {question && <h1 className={h1Classes}>{question}</h1>}
     </div>
   )
 }

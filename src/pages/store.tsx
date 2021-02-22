@@ -57,6 +57,14 @@ const StorePage: NextPage = () => {
       <button type="button" onClick={handleMoveIndex}>
         redirectページへ
       </button>
+      <button
+        type="button"
+        onClick={() => {
+          router.push('/redirect/context')
+        }}
+      >
+        contextへ
+      </button>
     </div>
   )
 }
