@@ -205,7 +205,7 @@ export const FormikCustomFormContainer = ({
     setValues(formValues)
   }, [formValues])
 
-  return <FormikCustomFormPresenter></FormikCustomFormPresenter>
+  return <FormikCustomFormPresenter />
 }
 
 export const validationSchema = Yup.object().shape({
@@ -255,9 +255,7 @@ export const FormikCustomForm = ({
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      <FormikCustomFormContainer
-        formValues={formValues}
-      ></FormikCustomFormContainer>
+      <FormikCustomFormContainer formValues={formValues} />
     </Formik>
   )
 }

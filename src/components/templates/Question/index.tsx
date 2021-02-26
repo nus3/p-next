@@ -9,6 +9,6 @@ export const QuestionTemplate = ({
   questionProps,
 }: QuestionTemplateProps): JSX.Element => (
   <QuestionLayout>
-    <Question {...questionProps}></Question>
+    <Question {...questionProps} />
   </QuestionLayout>
 )

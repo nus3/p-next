@@ -55,7 +55,7 @@ export const HookFormPresenter = ({
         {errors.age && <p>{errors.age.message}</p>}
       </div>
       <div>
-        <HookCheckBox name="isLike" label="ログホラが好き"></HookCheckBox>
+        <HookCheckBox name="isLike" label="ログホラが好き" />
       </div>
       <div>
         <HookRadio name="fruit" value="apple" label="りんご" />

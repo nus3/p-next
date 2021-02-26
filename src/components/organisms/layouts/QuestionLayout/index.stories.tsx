@@ -7,6 +7,6 @@ export default {
 
 export const Default = (): JSX.Element => (
   <QuestionLayout>
-    <Question text="質問文です"></Question>
+    <Question text="質問文です" />
   </QuestionLayout>
 )

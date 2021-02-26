@@ -19,5 +19,5 @@ export const InputText = ({
   ...props
 }: InputTextProps): JSX.Element => {
   const classes = classnames(styles.field, className)
-  return <input className={classes} type={type} {...props}></input>
+  return <input className={classes} type={type} {...props} />
 }
