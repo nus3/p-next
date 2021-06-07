@@ -28,6 +28,7 @@ export const Question = ({ text }: QuestionProps): JSX.Element => {
 
   return (
     <div className={styles.wrap}>
+      {!question && <img src="/img/hada-wait.jpg" className={styles.img} />}
       {question && <h1 className={h1Classes}>{question}</h1>}
     </div>
   )
